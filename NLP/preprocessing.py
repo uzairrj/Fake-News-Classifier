@@ -3,7 +3,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from tqdm.notebook import tqdm as tqdm
 
-class fake_news_detector:
+class fake_news_preprocessing:
     __nltk_STOPWORDS = None
 
     def __init__(self):
