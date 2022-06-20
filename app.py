@@ -1,7 +1,5 @@
 from dash import Dash, html, dcc,Output,Input, State
 import dash_bootstrap_components as dbc
-import plotly.express as px
-import pandas as pd
 from NLP import pipeline, models
 from data import load_data
 from pages import dashboard, detect
