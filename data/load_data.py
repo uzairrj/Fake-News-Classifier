@@ -22,7 +22,9 @@ class fake_news_data:
 
     def getTopTenFakeAuthors(self):
         topFakeAuthors = self.__data[self.__data.label == 1].author.value_counts()[:10]
-        return plot.bar(x=topFakeAuthors.keys(), y=topFakeAuthors.values, labels={"x":"Authors","y":"Number of Fake News"},template="plotly_dark")
+        graph = plot.bar(x=topFakeAuthors.keys(), y=topFakeAuthors.values, labels={"x":"Authors","y":"Number of Fake News"},template="plotly_dark")
+        graph.update_xaxes(tickangle=45)
+        return graph
 
     def getTopTenRealAuthors(self):
         topRealAuthors = self.__data[self.__data.label == 0].author.value_counts()[:10]
