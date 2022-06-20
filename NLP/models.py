@@ -5,11 +5,14 @@ class fake_news_models:
 
     def __init__(self, filename):
         with open(filename, "rb") as fp:
-            __models = pickle.load(fp)
-            print("Models are loaded successfuly: ",__models.keys())
+            self.__models = pickle.load(fp)
+            print("Models are loaded successfuly: ",self.__models.keys())
 
     def get_model(self,key):
-        return self.__models[key]
+        return self.__models[key]["model"]
+
+    def get_models_names(self):
+        return self.__models.keys()
 
     def get_accuracy(self,key):
         pass
