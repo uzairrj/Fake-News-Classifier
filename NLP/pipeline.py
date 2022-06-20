@@ -1,6 +1,6 @@
 from numpy import argmax
-from models import fake_news_models
-from preprocessing import fake_news_preprocessing
+import models
+import preprocessing
 import sys
 import os
 
@@ -10,10 +10,10 @@ class fake_news_pipeline:
 
     def __init__(self, filename=None, models=None):
         if not models:
-            self.__models = fake_news_models(filename)
+            self.__models = models.fake_news_models(filename)
         else:
             self.__models = models
-        self.__preprocessing = fake_news_preprocessing()
+        self.__preprocessing = preprocessing.fake_news_preprocessing()
 
     def predict(self, str, model="sc"):
         data = self.__preprocessing.preprocess(str)
@@ -35,7 +35,7 @@ class fake_news_pipeline:
 
 
 if __name__ == "__main__":
-    models = fake_news_models(os.getcwd()+'/models/models.bin')
+    models = models.fake_news_models(os.getcwd()+'/models/models.bin')
     pipeline = fake_news_pipeline(models=models)
 
     if len(sys.argv) != 3:
