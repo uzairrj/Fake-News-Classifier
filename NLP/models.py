@@ -15,4 +15,4 @@ class fake_news_models:
         return self.__models.keys()
 
     def get_accuracy(self,key):
-        pass
+        return round(self.__models[key]["acc"]*100,2)
