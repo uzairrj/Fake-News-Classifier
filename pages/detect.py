@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from matplotlib.pyplot import figure
 import plotly.express as plot
 
-def detect_page(dash_app, fnd):
+def detect_page(dash_app, fnd, models):
     main_div = dbc.Container([
         dbc.Row([
             dbc.Col([
@@ -29,7 +29,7 @@ def detect_page(dash_app, fnd):
             ]),
             dbc.Row([
                 dbc.Col([
-                    dbc.Progress(label="Model Accuracy: 93.6%", color="success", value=93.6, className="mt-3")
+                    dbc.Progress(id="progress", label="Model Accuracy: 93.6%", color="success", value=93.6, className="mt-3")
                 ])
             ]),
             dbc.Row([
@@ -55,7 +55,14 @@ def detect_page(dash_app, fnd):
             ])
         ], style={"background":"#111111","border-radius":"10px","padding": "25px 30px"}, className="mt-3")
      ])
-    
+    @dash_app.callback(
+        Output("progress","label"),
+        Output("progress","value"),
+        Input("models_options","value"),
+    )
+    def accuracy_model(values):
+        return "Model Accuracy: {}%".format(models.get_accuracy(values)),values
+
     @dash_app.callback(
         Output("alert_container","children"),
         Input("check_news","n_clicks"),
