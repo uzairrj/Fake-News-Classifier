@@ -4,6 +4,11 @@ from NLP import pipeline, models
 from data import load_data
 from pages import dashboard, detect
 
+def warn(*args, **kwargs):
+    pass
+import warnings
+warnings.warn = warn
+
 app = Dash(__name__,external_stylesheets=[dbc.themes.CYBORG])
 app.config.suppress_callback_exceptions = True
 #fake news class
@@ -81,4 +86,4 @@ def render_page_content(pathname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False, threaded=True, use_reloader=False)
