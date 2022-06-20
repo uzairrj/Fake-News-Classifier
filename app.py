@@ -13,7 +13,7 @@ fake_news_pipeline = pipeline.fake_news_pipeline(models=fake_news_models)
 
 dashboard_page = dashboard.dashboard_page(fake_news_data)
 
-detect_page = detect.detect_page(app, fake_news_pipeline)
+detect_page = detect.detect_page(app, fake_news_pipeline,fake_news_models)
 
 SIDEBAR_STYLE = {
     "position": "fixed",
