@@ -8,7 +8,6 @@ class fake_news_preprocessing:
 
     def __init__(self):
         self.__nltk_STOPWORDS = set(stopwords.words("english"))
-        print("Data and Model Loaded!")
     
     def __toLower(self,tokens):
         return [t.lower() for t in tokens]
