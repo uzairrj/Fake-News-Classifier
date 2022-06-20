@@ -1,3 +1,4 @@
+from cProfile import label
 from re import template
 from dash import html, dcc, Input,Output, State
 import dash_bootstrap_components as dbc
@@ -20,14 +21,15 @@ def detect_page(dash_app, fnd):
                         {"label":"Random Forest", "value":"rf"},
                         {"label":"Support Vector Machine", "value":"svm"},
                         {"label":"Voting Classifier", "value":"vc"},
-                        {"label":"Stacking Classifier", "value":"sc", "selected":True},
-                    ]
+                        {"label":"Stacking Classifier", "value":"sc"},
+                    ],
+                    value="sc"
                     )
                 ])
             ]),
             dbc.Row([
                 dbc.Col([
-                    dbc.Progress(label="Model Accuracy: 93.6%", color="success", value=93.6)
+                    dbc.Progress(label="Model Accuracy: 93.6%", color="success", value=93.6, className="mt-3")
                 ])
             ]),
             dbc.Row([
@@ -68,7 +70,7 @@ def detect_page(dash_app, fnd):
             #class_label_probs = [(class_label*100),((1-class_label)*100)]
             fig = plot.pie(names=["Real","Fake"], values=class_label_probs, hole=.5, 
             template="plotly_dark",color=["Real","Fake"],color_discrete_map={"Fake":"#de3737","Real":"#37de4b"})
-            if pred["class"] == 1:
+            if pred["class"] == 0:
                 return dbc.Row([
                     dbc.Col([
                         dbc.Alert("The news is real.", color="success"),
