@@ -27,7 +27,6 @@ class fake_news_preprocessing:
         return [lematizer.lemmatize(t, pos = "n") for t in tokens]
 
     def preprocess(self,str):
-        MAX_LEN = 18064
         data = None
         #tokenize
         data = word_tokenize(str)
