@@ -44,17 +44,13 @@ def detect_page(dash_app, fnd, models):
             ]),
         ], style={"background":"#111111","border-radius":"10px","padding": "25px 30px"}),
         html.Div([
-            dbc.Row([
-                dbc.Col([
-                ],id="alert_container")
-            ]),
-            dbc.Row([
-                dbc.Col([
-                    
-                ], className="mt-3")
-            ])
-        ], style={"background":"#111111","border-radius":"10px","padding": "25px 30px"}, className="mt-3")
+            dcc.Loading(children=[
+                html.Div(id="alert_container", children=[], style={"background":"#111111","border-radius":"10px","padding": "25px 30px"}, className="d-none")
+            ]
+            )
+        ], className="mt-5")
      ])
+
     @dash_app.callback(
         Output("progress","label"),
         Output("progress","value"),
@@ -65,6 +61,7 @@ def detect_page(dash_app, fnd, models):
 
     @dash_app.callback(
         Output("alert_container","children"),
+        Output("alert_container","className"),
         Input("check_news","n_clicks"),
         State("news_text","value"),
         State("models_options","value"),
@@ -84,7 +81,7 @@ def detect_page(dash_app, fnd, models):
                         html.H5(["Prediction Confidence "]),
                         dcc.Graph(figure=fig)
                     ])
-                ])
+                ]),"d-block"
             else:
                 return dbc.Row([
                     dbc.Col([
@@ -92,5 +89,6 @@ def detect_page(dash_app, fnd, models):
                         html.H5(["Prediction Confidence "]),
                         dcc.Graph(figure=fig)
                     ])
-                ])
+                ]),"d-block"
+
     return main_div
