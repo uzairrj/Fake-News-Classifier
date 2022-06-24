@@ -2,7 +2,27 @@
 
 ![](https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg)
 
-The spreading of fake news among people is not new and it has already been reported since ancient ages. However, during the era of the internet and social media, the spreading of fake news became serious threat. Such false information should be detected as soon as possible with great accuracy to cut the negative impact on the readers. In this literature, the fake news is classified from the real news with the help of Natural Language Processing (NLP) techniques and machine learning algorithms. Moreover, machine learning’s well-known algorithms I.e. Support Vector Machine (SVM), Random Forest (RF), Naïve Bayes (NB), Logistic Regression (LR) is compared along with the custom ensemble algorithms i.e. Voting Classifier (VC) and Stacking Classifier (SC). The easy-to-use web-based interface is also proposed to classify the news on the go. The classification algorithms show the promising results on the classification of fake news from the real news. However, the SC performed exceptionally well as compare to all other algorithms in the list.
+The spreading of fake news among people is not new and it has already been reported since ancient ages. However, during the era of the internet and social media, the spreading of fake news became serious threat. Such false information should be detected as soon as possible with great accuracy to cut the negative impact on the readers. In this repository, the fake news is classified from the real news with the help of Natural Language Processing (NLP) techniques and machine learning algorithms. Moreover, machine learning’s well-known algorithms I.e. Support Vector Machine (SVM), Random Forest (RF), Naïve Bayes (NB), Logistic Regression (LR) is compared along with the custom ensemble algorithms i.e. Voting Classifier (VC) and Stacking Classifier (SC). The easy-to-use web-based interface is also proposed to classify the news on the go. The classification algorithms show the promising results on the classification of fake news from the real news. However, the SC performed exceptionally well as compare to all other algorithms in the list.
+
+```mermaid
+graph LR
+subgraph Pipeline
+	I(News Corpus) --> A
+	A[Data Preprocessing] --> B[Bag of Words]
+	B --> C[Singular Value Decomposition]
+	C --> D[Data Spliting]
+	D -- Training Data --> E[Training]
+	E --> F(Models)
+	D -- Testing Data --> G[Testing]
+	G --> H(Classification Results)
+	subgraph Data Preprocessing
+	K[Tokenization] --> L[Tokens Lower Casing]
+	L --> M[punctuation Removal]
+	M --> N[Stopwords Removal]
+	N --> O[Lemmatization]
+	end
+end
+```
 
 ### Installation
 To install the python packages, run the following command in the terminal
@@ -14,7 +34,7 @@ download the pre-trained models from the following link and place it in the mode
 [Fake news classification pre-trained models](https://univr-my.sharepoint.com/:u:/g/personal/uzairhassan_khan_studenti_univr_it/ERLJqpv32CxGk-FmOcymRyABopKIzgAFbOmErDvL2ToY4A?e=478WS0 "Fake news classification pre-trained models")
 
 ### Running The Project
-To run the projecgt there are two approaches i.e. Command Line and web-based interface
+To run the project there are two approaches i.e. Command Line and web-based interface
 
 #### 1. Command Line
 To classify fake news straigt from the terminal, run the following command in the terminal
@@ -22,7 +42,7 @@ To classify fake news straigt from the terminal, run the following command in th
 `python NLP/pipeline.py <Fake News Text> < sc | vc | lr | rf | svm >`
 
 #### 2. Interface
-To start the webased interface, use the following command in the terminal
+To start the web-based interface, use the following command in the terminal
 
 `python app.py`
 
