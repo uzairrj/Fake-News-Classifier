@@ -6,7 +6,12 @@ The spreading of fake news among people is not new and it has already been repor
 
 ```mermaid
 graph LR
-subgraph Pipeline
+	subgraph Data Preprocessing
+		K[Tokenization] --> L[Tokens Lower Casing]
+		L --> M[Punctuation Removal]
+		M --> N[Stopwords Removal]
+		N --> O[Lemmatization]
+	end
 	I(News Corpus) --> A
 	A[Data Preprocessing] --> B[Bag of Words]
 	B --> C[Singular Value Decomposition]
@@ -15,13 +20,6 @@ subgraph Pipeline
 	E --> F(Models)
 	D -- Testing Data --> G[Testing]
 	G --> H(Classification Results)
-	subgraph Data Preprocessing
-	K[Tokenization] --> L[Tokens Lower Casing]
-	L --> M[punctuation Removal]
-	M --> N[Stopwords Removal]
-	N --> O[Lemmatization]
-	end
-end
 ```
 
 ### Installation
