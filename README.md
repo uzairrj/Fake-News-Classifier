@@ -4,11 +4,29 @@
 
 The spreading of fake news among people is not new and it has already been reported since ancient ages. However, during the era of the internet and social media, the spreading of fake news became serious threat. Such false information should be detected as soon as possible with great accuracy to cut the negative impact on the readers. In this repository, the fake news is classified from the real news with the help of Natural Language Processing (NLP) techniques and machine learning algorithms. Moreover, machine learning’s well-known algorithms I.e. Support Vector Machine (SVM), Random Forest (RF), Naïve Bayes (NB), Logistic Regression (LR) is compared along with the custom ensemble algorithms i.e. Voting Classifier (VC) and Stacking Classifier (SC). The easy-to-use web-based interface is also proposed to classify the news on the go. The classification algorithms show the promising results on the classification of fake news from the real news. However, the SC performed exceptionally well as compare to all other algorithms in the list.
 
+```mermaid
+graph LR
+	subgraph Data Preprocessing
+		K[Tokenization] --> L[Tokens Lower Casing]
+		L --> M[Punctuation Removal]
+		M --> N[Stopwords Removal]
+		N --> O[Lemmatization]
+	end
+	I(News Corpus) --> A
+	A[Data Preprocessing] --> B[Bag of Words]
+	B --> C[Singular Value Decomposition]
+	C --> D[Data Spliting]
+	D -- Training Data --> E[Training]
+	E --> F(Models)
+	D -- Testing Data --> G[Testing]
+	G --> H(Classification Results)
+```
+
 ### Installation
 To install the python packages, run the following command in the terminal
 
 ```shell 
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
 download the pre-trained models from the following link and place it in the models folder
@@ -47,25 +65,3 @@ after running the command, enter the following address to your address bar
 | Voting Classifier  | 93%  | 92%  | 93%  | 92%  |
 |  Stacking Classifier | 93%  | 93%  | 93%  | 93%  |
 
-
-
-
-## UML diagrams
-
-```mermaid
-graph LR
-	subgraph Data Preprocessing
-		K[Tokenization] --> L[Tokens Lower Casing]
-		L --> M[punctuation Removal]
-		M --> N[Stopwords Removal]
-		N --> O[Lemmatization]
-	end
-	I(News Corpus) --> A
-	A[Data Preprocessing] --> B[Bag of Words]
-	B --> C[Singular Value Decomposition]
-	C --> D[Data Spliting]
-	D -- Training Data --> E[Training]
-	E --> F(Models)
-	D -- Testing Data --> G[Testing]
-	G --> H(Classification Results)
-```
